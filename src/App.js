@@ -1,11 +1,11 @@
 import Header from './components/header/Header';
-import SearchAndFilter from './containers/search-and-filter-container/SearchAndFilter';
+import Home from './containers/home-container/home';
 
 function App() {
   return (
     <div>
       <Header />
-      <SearchAndFilter />
+      <Home />
    </div>
   );
 }
