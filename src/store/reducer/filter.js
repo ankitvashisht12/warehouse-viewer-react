@@ -2,7 +2,10 @@ import warehousesData from '../../data/warehouses.json';
 import  * as actionTypes from '../actions/action_types';
 
 let initialState= {
-	warehouseData : warehousesData
+	warehouseData : warehousesData,
+	cities: [],
+	clusters: [],
+	space: 0
 }
 
 const getUpdatedWarehouses = (data) => {
@@ -33,6 +36,35 @@ const filterReducer  = (state=initialState, actions) => {
 
 	if(actions.type === actionTypes.FILTER_REMOVE){
 		return { warehousesData }; 
+	}
+
+	if(actions.types === actionTypes.CHECKED) {
+		if(actions.payload.category === 'cities'){
+			return {
+				...state,
+				cities: actions.payload.data
+			}
+		}else {
+			return {
+				...state,
+				clusters: actions.payload.data
+			}
+
+		}
+	}
+
+	if(actions.types === actionTypes.UNCHECKED){
+		if(actions.payload.category === 'cities'){
+			return {
+				...state,
+				cities: actions.payload.data
+			}
+		}else {
+				return {
+					...state,
+					clusters: actions.payload.data
+				}
+		}
 	}
 
 	return state;
