@@ -1,8 +1,11 @@
-import './App.css';
+import Header from './components/header/Header';
+import SearchAndFilter from './containers/search-and-filter-container/SearchAndFilter';
 
 function App() {
   return (
-    <div className="App">
+    <div>
+      <Header />
+      <SearchAndFilter />
    </div>
   );
 }
