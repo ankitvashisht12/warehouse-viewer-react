@@ -1,7 +1,7 @@
 import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import * as actions from '../../store/actions/actions'
-
+import classes from './Filter.module.css';
 
 const Filter = ({ heading, arr}) => {
 
@@ -25,16 +25,18 @@ const Filter = ({ heading, arr}) => {
 	}
 
 	return (
-		<div>
+		<div className={classes.filter}>
 			<h3>{`Choose ${heading}`}</h3>	
+				<div className={classes.checkBox_container}>
 				{
 					arr.map((c) => {
-						return <label key={c} htmlFor={c}>
-							<input type="checkbox" onClick={e => toggleHandler(e, c)}/>
+						return <label className={classes.checkBox} key={c} htmlFor={c}>
+							<input type="checkbox" id={c} onClick={e => toggleHandler(e, c)}/>
 							{c}
 						</label>	
 					})
 				}
+				</div>
 		</div>
 	)
 }

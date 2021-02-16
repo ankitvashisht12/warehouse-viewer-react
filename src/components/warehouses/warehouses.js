@@ -1,12 +1,14 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import Warehouse from '../warehouse/warehouse';
+import classes from './Warehouses.module.css';
 
 const Warehouses = () => {
 	const warehouses = useSelector((state) => state.warehouseData);
 
 	return (
-		<div>
+		<div className={classes.warehouse_container}>
+			<h2>Warehouses</h2>
 			{
 				warehouses.map(({ name, code, id, city, space_available, type, cluster, is_registered, is_live }) => {
 					return <Warehouse 

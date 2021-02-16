@@ -1,0 +1,16 @@
+.filter{
+	margin-bottom: 20px;
+	padding: 5px 10px ;
+	border-radius: 20px;
+	background-color: #ffffff;
+}
+
+
+.checkBox {
+	margin: 10px;
+}
+
+.checkBox_container {
+	display: flex;
+	flex-direction: column;
+}

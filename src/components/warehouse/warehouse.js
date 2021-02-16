@@ -1,12 +1,16 @@
 import React from 'react'
+import classes from './warehouse.module.css';
 
 const Warehouse = ({ name, code, id, city, space_available, type, cluster, is_registered, is_live }) => {
+
+
 	return (
-		<div>
+		<div className={classes.warehouse}>
 			<h2>{name}</h2>		
-			<h2>{city}</h2>		
-			<h2>{cluster}</h2>		
-			<h2>{space_available}</h2>		
+			<h3>City: {city}</h3>		
+			<h3>Cluster: {cluster}</h3>		
+			<h3>code: {code}</h3>		
+			<h3>Space Availabe: {space_available}</h3>		
 		</div>
 	)
 }

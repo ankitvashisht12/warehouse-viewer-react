@@ -1,0 +1,11 @@
+.warehouse {
+	border-radius: 20px;
+	background-color: #ffffff;
+	padding: 10px;
+	margin: 20px 0;
+	text-align: center;
+}
+
+.warehouse:hover {
+	cursor: pointer;
+}

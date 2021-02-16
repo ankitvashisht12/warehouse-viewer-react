@@ -1,0 +1,10 @@
+.warehouse_container {
+	padding: 10px;
+	margin: 0 20px;
+}
+
+@media (min-width: 700px) {
+	.warehouse_container{
+		width: 100vw;
+	}
+}

@@ -3,6 +3,7 @@ import Filter from '../filter/filter'
 import warehouseData from '../../data/warehouses.json';
 import * as actions from '../../store/actions/actions';
 import { useSelector, useDispatch } from 'react-redux';
+import classes from './Filters.module.css';
 
 
 const getUniqueCities = () => {
@@ -59,7 +60,7 @@ const Filters = () => {
 	}
 
 	return (
-		<div>
+		<div className={classes.filter_container}>
 			<h2>Filter</h2>
 			<form onSubmit={filterSubmitHandler}>
 			<Filter heading="cities" arr={uniqueCities}/>	
@@ -71,7 +72,7 @@ const Filters = () => {
 					placeholder="Enter Minimum Space "/>
 			</label>
 
-			<button>Submit</button>
+			<button type="submit" className={classes.submit_button}>Submit</button>
 			</form>
 		</div>
 	)
