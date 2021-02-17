@@ -7,10 +7,10 @@ export const add_filter = (data) => {
 	}
 }
 
-export const remove_filter = () => {
+export const remove_filter = (data) => {
 	return {
 		type: action_types.FILTER_REMOVE,
-		payload: {}
+		payload:data 
 	}
 }
 
@@ -31,5 +31,12 @@ export const unChecked = (data, category) => {
 			data,
 			category
 		}
+	}
+}
+
+export const renderWarehouse = (data) => {
+	return {
+		type: action_types.SEARCH,
+		payload: data
 	}
 }

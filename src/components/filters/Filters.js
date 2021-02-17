@@ -1,7 +1,7 @@
 import React from 'react'
 import Filter from '../filter/filter'
 import warehouseData from '../../data/warehouses.json';
-import * as actions from '../../store/actions/actions';
+import {add_filter, remove_filter, renderWarehouse} from '../../store/actions/actions';
 import { useSelector, useDispatch } from 'react-redux';
 import classes from './Filters.module.css';
 
@@ -52,22 +52,29 @@ const Filters = () => {
 			spaceVal 
 		}
 		console.log(data);
-		dispatch(actions.add_filter(data));
+		dispatch(add_filter(data));
 	}
 
 	const spaceChangeHandler = (e) =>  {
 		spaceVal = +e.target.value
 	}
 
+//	const clearFilterHandler = () => {
+//		dispatch(remove_filter(warehouseData));
+//	}
+
 	return (
 		<div className={classes.filter_container}>
-			<h2>Filter</h2>
+			<div className={classes.filter_header}>
+				<h2>Filter</h2>
+				{/* <button onClick={clearFilterHandler}>Clear Filter</button> */}
+			</div>
 			<form onSubmit={filterSubmitHandler}>
 			<Filter heading="cities" arr={uniqueCities}/>	
 			<Filter heading="clusters" arr={uniqueClusters}/>	
 			<label htmlFor="space">
 				Space Avaliable
-				<input type="number" id="space" 
+				<input className={classes.spaceInput} type="number" id="space" 
 					onChange={e => spaceChangeHandler(e)}
 					placeholder="Enter Minimum Space "/>
 			</label>

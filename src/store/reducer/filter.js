@@ -5,16 +5,23 @@ let initialState= {
 	warehouseData : warehousesData,
 	cities: [],
 	clusters: [],
-	space: 0
+	space: 0,
+	isFilter: false
 }
 
 const getUpdatedWarehouses = (data) => {
 	let newWarehouses = [];
+
+	const hasCity = data.cities.length > 0 ? true : false;
+	const hasCluster = data.clusters.length > 0 ? true : false;
+	const hasSpace = data.spaceVal > 0 ? true : false;
 	
 	for( let i = 0; i< warehousesData.length; i++){
-		if( (data.cities.length > 0 && data.cities.indexOf(warehousesData[i].city) !== -1 ) || 
-				(data.space_available > 0 && data.space_available <= warehousesData[i].space_available ) || 
-				(data.clusters.length > 0 && data.clusters.indexOf(warehousesData[i].cluster) !== -1)) {
+
+		if( ((hasCity && data.cities.indexOf(warehousesData[i].city) !== -1 ) || !hasCity ) && 
+				((hasSpace && data.spaceVal <= warehousesData[i].space_available ) || (!hasSpace)) && 
+				((hasCluster && data.clusters.indexOf(warehousesData[i].cluster) !== -1) || (!hasCluster)) ) {
+						console.log(warehousesData[i]);
 						newWarehouses.push(warehousesData[i]);
 		}
 	}
@@ -27,18 +34,28 @@ const getUpdatedWarehouses = (data) => {
 }
 
 const filterReducer  = (state=initialState, actions) => {
-	if(actions.type === actionTypes.FILTER_ADD){
+	switch(actions.type ) {
+		case actionTypes.FILTER_ADD:
 		const updatedWarehouses = getUpdatedWarehouses(actions.payload);
 		return {
+			...state,
 			warehouseData: updatedWarehouses,
+			isFilter: true
 		}	
-	}
+	
 
-	if(actions.type === actionTypes.FILTER_REMOVE){
-		return { warehousesData }; 
-	}
+		case actionTypes.FILTER_REMOVE:
+			console.log(actions.payload);
+			return { 
+				...state, 
+				warehouseData: actions.payload, 
+				cities: [], 
+				clusters: [], 
+				isFilter: false
+			}; 
+	
 
-	if(actions.types === actionTypes.CHECKED) {
+		case actionTypes.CHECKED:
 		if(actions.payload.category === 'cities'){
 			return {
 				...state,
@@ -51,9 +68,9 @@ const filterReducer  = (state=initialState, actions) => {
 			}
 
 		}
-	}
+	
 
-	if(actions.types === actionTypes.UNCHECKED){
+		case actionTypes.UNCHECKED:
 		if(actions.payload.category === 'cities'){
 			return {
 				...state,
@@ -65,9 +82,16 @@ const filterReducer  = (state=initialState, actions) => {
 					clusters: actions.payload.data
 				}
 		}
-	}
 
-	return state;
+	
+	 case actionTypes.SEARCH:
+		return {
+			...state,
+			warehouseData: actions.payload
+		} 
+
+		default: return state;
+	}
 }
 
 

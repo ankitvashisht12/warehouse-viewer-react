@@ -1,6 +1,6 @@
 import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import * as actions from '../../store/actions/actions'
+import {checked, unChecked} from '../../store/actions/actions'
 import classes from './Filter.module.css';
 
 const Filter = ({ heading, arr}) => {
@@ -11,15 +11,15 @@ const Filter = ({ heading, arr}) => {
 
 	const toggleHandler = (e, c) => {
 
-		const newCh = [...ch]
+		let newCh = [...ch]
 		if(e.target.checked){
-			newCh.push(c)
-			dispatch(actions.checked(newCh, heading));
+			newCh.push(c);
+			dispatch(checked(newCh, heading));
 		}
 		else {
 			let idx = ch.indexOf(c);
 			newCh.splice(idx, 1);
-			dispatch(actions.unChecked(newCh, heading));
+			dispatch(unChecked(newCh, heading));
 		}
 
 	}
@@ -31,7 +31,11 @@ const Filter = ({ heading, arr}) => {
 				{
 					arr.map((c) => {
 						return <label className={classes.checkBox} key={c} htmlFor={c}>
-							<input type="checkbox" id={c} onClick={e => toggleHandler(e, c)}/>
+							<input 
+								type="checkbox" 
+								id={c} 
+								onClick={e => toggleHandler(e, c)}
+								/>
 							{c}
 						</label>	
 					})
