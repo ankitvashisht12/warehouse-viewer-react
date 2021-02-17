@@ -8,4 +8,10 @@
 
 .warehouse:hover {
 	cursor: pointer;
+	border: 1px solid black;
+}
+
+.link {
+	text-decoration: none;
+	color: black;
 }
